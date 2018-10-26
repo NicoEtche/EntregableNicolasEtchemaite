@@ -17,20 +17,13 @@ public class ViewPagerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_pager);
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
-
-
-        transactionDoReplace(R.id.container_viewP,dameUnFragment(bundle));
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(new AdapterViewPager(getSupportFragmentManager(), bundle.getInt("position")));
 
 
     }
 
-    public static FragmentDetalles dameUnFragment(Bundle bundle){
-        FragmentDetalles fragmentDetalles = new FragmentDetalles();
-        fragmentDetalles.setArguments(bundle);
-        return fragmentDetalles;
 
-    }
     private void transactionDoReplace(Integer container, android.support.v4.app.Fragment fragment) {
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();

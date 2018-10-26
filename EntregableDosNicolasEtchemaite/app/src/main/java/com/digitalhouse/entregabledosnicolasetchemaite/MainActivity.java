@@ -1,6 +1,8 @@
 package com.digitalhouse.entregabledosnicolasetchemaite;
 
 
+import android.content.Intent;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -18,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements AdapterRecetasRec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navigationView = (NavigationView) findViewById(R.id.navigation_view_main);
+        navigationView = findViewById(R.id.navigation_view_main);
 
         navigationView.setNavigationItemSelectedListener(new ListenerMenu());
 
@@ -29,14 +31,15 @@ public class MainActivity extends AppCompatActivity implements AdapterRecetasRec
 
     @Override
     public void celdaSeleccionada(Receta receta) {
-        FragmentDetalles fragment = new FragmentDetalles();
+        //FragmentDetalles fragment = new FragmentDetalles();
         Bundle bundle = new Bundle();
-        bundle.putString(fragment.CLAVE_TITLE, receta.getTitulo());
-        bundle.putInt(fragment.CLAVE_FOTO, receta.getFoto());
-        bundle.putStringArrayList(fragment.CLAVE_INGREDIENTES, (ArrayList<String>) receta.getIngredientes());
-        bundle.putString(fragment.CLAVE_PREPARACION, receta.getPreparacion());
-        fragment.setArguments(bundle);
-        transactionDoReplace(R.id.container_main, fragment);
+        Integer position = AdapterRecetasRecyclerView.position;
+        bundle.putInt("position", position);
+        Intent intent = new Intent(this, ViewPagerActivity.class);
+        intent.putExtras(bundle);
+        startActivity(intent);
+
+
 
     }
 

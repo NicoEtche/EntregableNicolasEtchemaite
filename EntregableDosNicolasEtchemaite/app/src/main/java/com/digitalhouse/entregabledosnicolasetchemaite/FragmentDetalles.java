@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +45,16 @@ public class FragmentDetalles extends Fragment {
         
         return view;
     }
-
+public static FragmentDetalles fragmentDetallesFabric (Receta receta){
+        FragmentDetalles fragmentDetalles = new FragmentDetalles();
+        Bundle bundle = new Bundle();
+    bundle.putString(FragmentDetalles.CLAVE_TITLE, receta.getTitulo());
+    bundle.putInt(FragmentDetalles.CLAVE_FOTO, receta.getFoto());
+    bundle.putStringArrayList(FragmentDetalles.CLAVE_INGREDIENTES, (ArrayList<String>) receta.getIngredientes());
+    bundle.putString(FragmentDetalles.CLAVE_PREPARACION, receta.getPreparacion());
+    fragmentDetalles.setArguments(bundle);
+        return fragmentDetalles;
+}
 
 
 }

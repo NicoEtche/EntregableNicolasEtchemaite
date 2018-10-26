@@ -1,5 +1,8 @@
 package com.digitalhouse.entregabledosnicolasetchemaite;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
 import java.util.List;
 
 public class Receta {

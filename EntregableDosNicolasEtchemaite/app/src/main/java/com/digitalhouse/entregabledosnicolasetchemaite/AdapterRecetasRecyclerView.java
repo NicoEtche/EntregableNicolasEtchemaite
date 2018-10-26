@@ -1,5 +1,6 @@
 package com.digitalhouse.entregabledosnicolasetchemaite;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +13,8 @@ import android.widget.TextView;
 import java.util.List;
 
 public class AdapterRecetasRecyclerView extends RecyclerView.Adapter<AdapterRecetasRecyclerView.RecetaViewHolder> {
-   private List<Receta> recetas;
+    public static Integer position;
+    private List<Receta> recetas;
 
    public AdapterRecetasRecyclerView(List<Receta> recetas) {
       this.recetas = recetas;
@@ -58,7 +60,9 @@ public class AdapterRecetasRecyclerView extends RecyclerView.Adapter<AdapterRece
             public void onClick(View v) {
             ListenerCeldaRV listenerCeldaRV = (ListenerCeldaRV) v.getContext();
              Receta receta = recetas.get(getAdapterPosition());
+             position = getAdapterPosition();
               listenerCeldaRV.celdaSeleccionada(receta);
+
 
             }
          });
@@ -75,6 +79,7 @@ public class AdapterRecetasRecyclerView extends RecyclerView.Adapter<AdapterRece
    public interface ListenerCeldaRV {
       public void celdaSeleccionada(Receta re);
    }
+
 }
 
 
