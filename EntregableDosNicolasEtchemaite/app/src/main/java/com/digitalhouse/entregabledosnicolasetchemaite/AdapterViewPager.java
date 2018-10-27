@@ -13,18 +13,11 @@ public class AdapterViewPager extends FragmentStatePagerAdapter {
     private List<FragmentDetalles> fragmentDetallesList;
 
 
-    public AdapterViewPager(FragmentManager fm, Integer positionStart) {
+    public AdapterViewPager(FragmentManager fm, List<Receta> recetas) {
         super(fm);
         this.fragmentDetallesList = new ArrayList<>();
-        List<Receta> recetaList = DAOReceta.crearRecetas();
-
-        for (int i = positionStart; i < recetaList.size(); i++) {
-            fragmentDetallesList.add(FragmentDetalles.fragmentDetallesFabric(recetaList.get(i)));
-
-        }
-        for (int j = 0; j <positionStart ; j++) {
-            fragmentDetallesList.add(FragmentDetalles.fragmentDetallesFabric(recetaList.get(j)));
-
+        for (Receta receta:recetas) {
+            fragmentDetallesList.add(FragmentDetalles.fragmentDetallesFabric(receta));
         }
 
     }

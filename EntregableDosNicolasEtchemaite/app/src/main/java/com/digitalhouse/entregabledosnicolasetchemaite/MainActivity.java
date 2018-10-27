@@ -8,11 +8,14 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements AdapterRecetasRecyclerView.ListenerCeldaRV {
+public class MainActivity extends AppCompatActivity implements AdapterRecetasRecyclerView.ListenerCeldaRV{
     private NavigationView navigationView;
 
     @Override
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements AdapterRecetasRec
     public void celdaSeleccionada(Receta receta) {
         //FragmentDetalles fragment = new FragmentDetalles();
         Bundle bundle = new Bundle();
+        bundle.putCharSequence("edit", FragmentReceta.editText.getText());
         Integer position = AdapterRecetasRecyclerView.position;
         bundle.putInt("position", position);
         Intent intent = new Intent(this, ViewPagerActivity.class);
@@ -41,7 +45,10 @@ public class MainActivity extends AppCompatActivity implements AdapterRecetasRec
 
 
 
+
     }
+
+
 
 
     private void selectedMenuItem(MenuItem menuItem) {

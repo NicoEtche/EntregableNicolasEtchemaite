@@ -3,9 +3,11 @@ package com.digitalhouse.entregabledosnicolasetchemaite;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,6 +50,7 @@ public class AdapterRecetasRecyclerView extends RecyclerView.Adapter<AdapterRece
       private ImageView imagenReceta;
       private TextView titulo;
       private LinearLayout celda;
+      private EditText busqueda;
 
       public RecetaViewHolder(View itemView) {
          super(itemView);
@@ -58,15 +61,16 @@ public class AdapterRecetasRecyclerView extends RecyclerView.Adapter<AdapterRece
          celda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-            ListenerCeldaRV listenerCeldaRV = (ListenerCeldaRV) v.getContext();
-             Receta receta = recetas.get(getAdapterPosition());
-             position = getAdapterPosition();
-              listenerCeldaRV.celdaSeleccionada(receta);
+               ListenerCeldaRV listenerCeldaRV = (ListenerCeldaRV) v.getContext();
+               Receta receta = recetas.get(getAdapterPosition());
+               position = getAdapterPosition();
+               listenerCeldaRV.celdaSeleccionada(receta);
 
 
             }
          });
       }
+
 
       public void bindReceta(Receta receta){
          imagenReceta.setImageResource(receta.getFoto());
@@ -80,6 +84,9 @@ public class AdapterRecetasRecyclerView extends RecyclerView.Adapter<AdapterRece
       public void celdaSeleccionada(Receta re);
    }
 
+   public void setRecetas(List<Receta> recetas) {
+      this.recetas = recetas;
+   }
 }
 
 
