@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements AdapterRecetasRecyclerView.ListenerCeldaRV{
     private NavigationView navigationView;
+    private Integer transactionCounter = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,11 +74,16 @@ public class MainActivity extends AppCompatActivity implements AdapterRecetasRec
     }
 
     private void transactionDoReplace(Integer container, android.support.v4.app.Fragment fragment) {
+        transactionCounter++;
         android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
         android.support.v4.app.FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(container, fragment);
-        transaction.addToBackStack(null);
         transaction.commit();
+        if(transactionCounter != 0){
+            transaction.addToBackStack(null);
+        }
+
+
     }
 
 }
